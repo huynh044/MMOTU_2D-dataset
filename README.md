@@ -1,62 +1,60 @@
 # MMOTU 2D (OTU_2d) Dataset
 
-## 1. Giới thiệu về Dataset
-**MMOTU 2D (`OTU_2d`)** là tập dữ liệu con trong bộ dữ liệu **MMOTU** (*Multi-Modality Ovarian Tumor Ultrasound*), phục vụ cho các bài toán nhận diện, phân loại và phân đoạn ngữ nghĩa (semantic segmentation) khối u buồng trứng trên ảnh siêu âm 2D.
+## 1. Dataset Overview
+**MMOTU 2D (`OTU_2d`)** is a subset of the **MMOTU** (*Multi-Modality Ovarian Tumor Ultrasound*) benchmark dataset, designed for ovarian tumor recognition, classification, and semantic segmentation in 2D ultrasound imaging.
 
-- **Tổng số lượng ảnh**: 1.469 ảnh siêu âm 2D.
-- **Phân chia dữ liệu**:
-  - **Train**: 1.000 ảnh
-  - **Validation**: 469 ảnh
-- **Các tác vụ chính**:
-  - **Phân loại (Classification)**: Phân loại 8 lớp tổn thương buồng trứng.
-  - **Phân đoạn (Segmentation)**: Tách khối u/vùng tổn thương ra khỏi mô nền (Multi-class mask & Binary mask).
+- **Total Images**: 1,469 2D ultrasound images.
+- **Data Splits**:
+  - **Train**: 1,000 images
+  - **Validation**: 469 images
+- **Main Tasks**:
+  - **Classification**: 8-class ovarian tumor and normal ovary categorization.
+  - **Segmentation**: Pixel-level tumor boundary delineations (Multi-class masks & Binary masks).
 
-### Danh sách 8 lớp (Class 0 - 7):
-| ID | Tên lớp (Tiếng Anh) | Tên lớp (Tiếng Việt) | Train | Val | Tổng |
-|:--:|:--------------------|:---------------------|:-----:|:---:|:----:|
-| **0** | Chocolate cyst | Nang sô-cô-la (Lạc nội mạc tử cung) | 226 | 110 | 336 |
-| **1** | Serous cystadenoma | U nang thanh dịch | 153 | 66 | 219 |
-| **2** | Teratoma | U quái buồng trứng | 228 | 108 | 336 |
-| **3** | Theca cell tumor | U tế bào vỏ | 57 | 31 | 88 |
-| **4** | Simple cyst | Nang buồng trứng đơn thuần | 47 | 19 | 66 |
-| **5** | Normal ovary | Buồng trứng bình thường | 180 | 87 | 267 |
-| **6** | Mucinous cystadenoma | U nang nhầy | 71 | 33 | 104 |
-| **7** | High-grade serous | Ung thư dạng thanh dịch độ ác tính cao | 38 | 15 | 53 |
+### Categories (Classes 0 – 7):
+| ID | Category Name | Description / Type | Train | Val | Total |
+|:--:|:--------------|:-------------------|:-----:|:---:|:-----:|
+| **0** | Chocolate cyst | Ovarian endometrioma | 226 | 110 | 336 |
+| **1** | Serous cystadenoma | Benign cystic tumor | 153 | 66 | 219 |
+| **2** | Teratoma | Mature cystic teratoma | 228 | 108 | 336 |
+| **3** | Theca cell tumor | Stromal tumor | 57 | 31 | 88 |
+| **4** | Simple cyst | Functional/simple fluid cyst | 47 | 19 | 66 |
+| **5** | Normal ovary | Healthy ovarian tissue | 180 | 87 | 267 |
+| **6** | Mucinous cystadenoma | Benign epithelial tumor | 71 | 33 | 104 |
+| **7** | High-grade serous | High-grade serous carcinoma (Malignant) | 38 | 15 | 53 |
 
 ---
 
-## 2. Hình ảnh minh họa
+## 2. Sample Image
 
 <p align="center">
   <img src="images/1.JPG" alt="Sample Ultrasound Image" width="500"/>
 </p>
 
-> *Ghi chú: Bạn có thể thay đổi đường dẫn `src="images/1.JPG"` bằng ảnh hoặc URL mong muốn.*
+> *Note: You can replace `src="images/1.JPG"` with your preferred image path or URL.*
 
 ---
 
-## 3. Cấu trúc thư mục
+## 3. Directory Structure
 
 ```text
 OTU_2d/
-├── images/             # Thư mục chứa toàn bộ 1.469 ảnh siêu âm định dạng .JPG
-├── annotations/        # Thư mục chứa các mặt nạ nhãn (mask) định dạng .PNG
-├── train.txt           # Danh sách ID ảnh thuộc tập huấn luyện (1.000 mẫu)
-├── val.txt             # Danh sách ID ảnh thuộc tập kiểm thử/đánh giá (469 mẫu)
-├── train_cls.txt       # Danh sách ảnh tập Train kèm nhãn lớp tương ứng (<tên_ảnh> <class_id>)
-├── val_cls.txt         # Danh sách ảnh tập Val kèm nhãn lớp tương ứng (<tên_ảnh> <class_id>)
-└── README.md           # Tài liệu hướng dẫn sử dụng dataset
+├── images/             # All 1,469 original ultrasound images (.JPG)
+├── annotations/        # Ground-truth segmentation masks (.PNG)
+├── train.txt           # Image IDs for the training split (1,000 samples)
+├── val.txt             # Image IDs for the validation split (469 samples)
+├── train_cls.txt       # Training split with class labels (<image_name> <class_id>)
+├── val_cls.txt         # Validation split with class labels (<image_name> <class_id>)
+└── README.md           # Dataset documentation
 ```
 
 ---
 
-## 4. Chi tiết các tệp và thư mục
+## 4. File and Folder Descriptions
 
-- **`images/`**: Chứa ảnh gốc siêu âm 2D được đặt tên theo số thứ tự (ví dụ: `1.JPG`, `10.JPG`, `1000.JPG`...).
-- **`annotations/`**: Chứa ground-truth mask tương ứng cho bài toán phân đoạn:
-  - `<id>.PNG`: Mask phân đoạn đa lớp theo bảng màu.
-  - `<id>_binary.PNG`: Mask phân đoạn nhị phân (0: Nền/Mô lành, 1: Khối u).
-- **`train.txt` & `val.txt`**: Mỗi dòng là một mã ID của ảnh (ví dụ: `658`, `384`...) để load tập Train và Val.
-- **`train_cls.txt` & `val_cls.txt`**: Định dạng `<file_name> <class_id>` (ví dụ: `658.JPG 5`), dùng trực tiếp cho các mô hình phân loại.
-## 5. Link driver: https://drive.google.com/drive/folders/1HdCzP1zCtivI9AEbs8WtQcadzkdPtK_L
-
+- **`images/`**: Contains raw 2D ultrasound images named by sample index (e.g., `1.JPG`, `10.JPG`, `1000.JPG`...).
+- **`annotations/`**: Contains corresponding ground-truth segmentation masks:
+  - `<id>.PNG`: Multi-class semantic segmentation mask encoded with color palette.
+  - `<id>_binary.PNG`: Binary segmentation mask (0: Background/Normal tissue, 1: Tumor region).
+- **`train.txt` & `val.txt`**: Each line contains an image ID (e.g., `658`, `384`...) used to index the Train and Validation sets.
+- **`train_cls.txt` & `val_cls.txt`**: Classification split files formatted as `<image_name> <class_id>` (e.g., `658.JPG 5`).
