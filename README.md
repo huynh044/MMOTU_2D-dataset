@@ -1,4 +1,4 @@
-# MMOTU 2D (OTU_2d) Dataset
+# I. MMOTU 2D (OTU_2d) Dataset
 
 ## 1. Dataset Overview
 **MMOTU 2D (`OTU_2d`)** is a subset of the **MMOTU** (*Multi-Modality Ovarian Tumor Ultrasound*) benchmark dataset, designed for ovarian tumor recognition, classification, and semantic segmentation in 2D ultrasound imaging.
@@ -46,13 +46,5 @@ OTU_2d/
 └── README.md           # Dataset documentation
 ```
 
----
-
-## 4. File and Folder Descriptions
-
-- **`images/`**: Contains raw 2D ultrasound images named by sample index (e.g., `1.JPG`, `10.JPG`, `1000.JPG`...).
-- **`annotations/`**: Contains corresponding ground-truth segmentation masks:
-  - `<id>.PNG`: Multi-class semantic segmentation mask encoded with color palette.
-  - `<id>_binary.PNG`: Binary segmentation mask (0: Background/Normal tissue, 1: Tumor region).
-- **`train.txt` & `val.txt`**: Each line contains an image ID (e.g., `658`, `384`...) used to index the Train and Validation sets.
-- **`train_cls.txt` & `val_cls.txt`**: Classification split files formatted as `<image_name> <class_id>` (e.g., `658.JPG 5`).
+## II. OvaTus dataset
+- I have a private dataset for the paper, that is OvaTus ad if you want to check it, let's contact me to open !
