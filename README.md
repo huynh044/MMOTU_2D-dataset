@@ -31,8 +31,6 @@
   <img src="images/1.JPG" alt="Sample Ultrasound Image" width="500"/>
 </p>
 
-> *Note: You can replace `src="images/1.JPG"` with your preferred image path or URL.*
-
 ---
 
 ## 3. Directory Structure
